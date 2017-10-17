@@ -2,7 +2,7 @@
 #include <stdio.h>
 #include <assert.h>
 #include <string.h>
-
+#include "readData.h"
 
 //number of urls
 int numURLs(){
@@ -64,10 +64,10 @@ int** AdjMatrix (int N){
 }
 
 //geting a collection of urls
-int main(void){
+void GetCollection(char **urls){
     int nums = numURLs();
-    char** urls = ReadURLs(nums);
-    return 0;
+    urls = ReadURLs(nums);
+    //return urls;
 }    
 
 
