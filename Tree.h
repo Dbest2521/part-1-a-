@@ -21,7 +21,7 @@ typedef enum {
 typedef char *Key;
 typedef Key Item; // item is just a key
 #define key(it) (it)
-#define cmp(k1,k2) ((k1) - (k2))
+#define cmp(k1,k2) (strcmp(k1, k2))
 #define less(k1,k2) (cmp(k1,k2) < 0)
 #define eq(k1,k2) (cmp(k1,k2) == 0)
 
@@ -45,4 +45,3 @@ int TreeDepth(Tree);
 // count #nodes in Tree
 int TreeNumNodes(Tree);
 
-#endif

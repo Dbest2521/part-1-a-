@@ -2,7 +2,6 @@
 #include <stdio.h>
 #include <assert.h>
 #include <string.h>
-#include "readData.h"
 
 //number of urls
 int numURLs(){
@@ -10,7 +9,7 @@ int numURLs(){
     char buff[1000];
     
     int nums = 0;
-    while (fscanf(f, " %s", buff) == 1){
+    while (fscanf(f, "%s", buff) == 1){
         nums++;
     }
     fclose(f);
@@ -29,7 +28,7 @@ char** ReadURLs(int nums){
     //copying the list of url into new array
     int i = 0;
     while (i<nums){
-        fscanf(f, " %s", buff);
+        fscanf(f, "%s", buff);
         urls[i] = strdup(buff);//creates a copy of buff into urls[i]
         i++;
     }
@@ -63,14 +62,13 @@ int** AdjMatrix (int N){
     return m;
 }
 
-//geting a collection of urls
-void GetCollection(char **urls){
+
+int main(void){
     int nums = numURLs();
-    urls = ReadURLs(nums);
-    //return urls;
+    char** urls = ReadURLs(nums);
+    return 0;
 }    
-
-
+    
 //strstr - finding string within another string -> returns a pointer -- return NULL if haven't found, else return a pointer at the first letter 
 //skip the new line/and the next string by doing fscanf("%s")
 //space needed before fscanf(" %s");

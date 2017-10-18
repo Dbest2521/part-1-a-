@@ -6,6 +6,7 @@
 #include <assert.h>
 #include <string.h>
 #include "Tree.h"
+#include "List.h"
 
 // Representation of Trees and Nodes
 
@@ -13,7 +14,7 @@ typedef struct Node *Link;
 
 typedef struct Node {
 	Item value;
-	Link LOU;//a list of urls
+	DLListRep LOU;//a list of urls
 	Link left, right;
 	Tree within;  // which tree contains this Node
 } Node;
@@ -59,6 +60,7 @@ static Link newNode(Item v)
 	new->value = v;
 	new->left = new->right = NULL;
 	new->within = thisTree;
+	new->LOU = newDLList();
 	return new;
 }
 
@@ -161,10 +163,11 @@ Link insert(Link t, Item it)
 	t->within->ncompares++;
 	if (diff == 0)
 		t->value = it;
-	else if (diff < 0)
+	else if (diff < 0){
 		t->left = insert(t->left, it);
-	else if (diff > 0)
+	} else if (diff > 0){
 		t->right = insert(t->right, it);
+	}
 	return t;
 }
 

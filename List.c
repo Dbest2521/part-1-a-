@@ -6,7 +6,7 @@
 #include <stdio.h>
 #include <string.h>
 #include <assert.h>
-#include "DLList.h"
+#include "List.h"
 
 // data structures representing DLList
 
@@ -236,20 +236,31 @@ void DLListAfter(DLList L, char *it)
 {
 	assert(L != NULL); 
 	struct DLListNode *p = newDLListNode(it);
-	if (L->first == NULL)
-		L->first = L->last = L->curr = p;
-		
-	else if (L->curr->next!=NULL){
+	struct DLListNode *temp = L->first;
+	
+	while(temp!=NULL){
+	    if (strcmp(temp->value, it)==0){
+	        return;
+	    }
+	    else {
+	        temp = temp->next;
+	    }
+	}
+	
+    if (L->first == NULL)
+	    L->first = L->last = L->curr = p;
+	
+    else if (L->curr->next!=NULL){
         p->next = L->curr->next;
         L->curr->next->prev = p;
         L->curr->next = p;
         p->prev = L->curr;
-	}
-	else {
-	    L->curr->next = p;
-	    p->prev = L->curr;
-	    L->last = p;
-	}
+    }
+    else {
+        L->curr->next = p;
+        p->prev = L->curr;
+        L->last = p;
+    }
     L->curr = p;
     L->nitems++;	
 	

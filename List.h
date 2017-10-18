@@ -6,7 +6,6 @@
 #define DLLIST_H
 
 #include <stdio.h>
-#include "DLList.h"
 
 // External view of DLList
 // Implementation given in DLList.c
@@ -62,4 +61,3 @@ int DLListLength(DLList);
 // is the list empty?
 int DLListIsEmpty(DLList);
 
-#endif
